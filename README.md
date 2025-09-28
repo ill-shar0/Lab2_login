@@ -39,3 +39,26 @@ Implementación de un sistema completo de autenticación desarrollado con el fra
 ```bash
 git clone https://github.com/tu-usuario/lab2-login-laravel.git
 cd lab2-login-laravel
+
+### 2. Istalar dependencias de PHP
+```bash
+composer install
+
+### 3. Configurar entorno: 
+```bash
+cp .env.example .env
+php artisan key:generate
+
+### 4. Configurar base de datos
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nombre_base_datos
+DB_USERNAME=root
+DB_PASSWORD=
+
+### 5. Instalar autenticación con Laravel UI
+```bash
+composer require laravel/ui
+php artisan ui bootstrap --auth
