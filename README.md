@@ -25,62 +25,102 @@ Implementación de un sistema de autenticación en Laravel utilizando la arquite
 git clone https://github.com/tu-usuario/lab2-login-laravel.git
 cd lab2-login-laravel
 
-###LARAVEL
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+ Instalar dependencias
+bash
+composer install
+3. Configurar entorno
+bash
+cp .env.example .env
+php artisan key:generate
+4. Configurar base de datos
+Editar el archivo .env:
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nombre_base_datos
+DB_USERNAME=root
+DB_PASSWORD=
+5. Instalar autenticación (con Laravel UI)
+bash
+composer require laravel/ui
+php artisan ui bootstrap --auth
+npm install
+npm run dev
+6. Ejecutar migraciones
+bash
+php artisan migrate
+7. Ejecutar el servidor
+bash
+php artisan serve
+Arquitectura MVC en Laravel
+Modelos (Models)
+Ubicación: app/Models/
 
-## About Laravel
+Función: Gestionan los datos y la lógica de negocio
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Ejemplo: User.php - Maneja la información de usuarios
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Vistas (Views)
+Ubicación: resources/views/
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Función: Interfaz de usuario (archivos .blade.php)
 
-## Learning Laravel
+Ejemplo: auth/login.blade.php - Vista del formulario de login
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Controladores (Controllers)
+Ubicación: app/Http/Controllers/
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Función: Gestionan las peticiones HTTP
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Ejemplo: LoginController.php - Controla el proceso de autenticación
 
-## Laravel Sponsors
+Rutas (Routes)
+Ubicación: routes/web.php
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Función: Definen las URLs de la aplicación
 
-### Premium Partners
+Ejemplo:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+php
+Route::get('/login', [LoginController::class, 'showLoginForm']);
+Base de Datos
+Migraciones
+Comandos utilizados para crear las tablas:
 
-## Contributing
+bash
+php artisan migrate:status  # Ver estado de migraciones
+php artisan migrate        # Ejecutar migraciones
+Estructura de Tablas
+users: Almacena información de usuarios
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+password_reset_tokens: Maneja recuperación de contraseñas
 
-## Code of Conduct
+failed_jobs: Registra jobs fallidos
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Dificultades y Soluciones
+Problema 1: Error de conexión con MySQL
+Descripción: Inconvenientes al inicializar MySQL desde XAMPP debido a conflictos con los puertos
 
-## Security Vulnerabilities
+Solución: Se intentó cambiar de puerto y actualizar Laravel sin éxito. Finalmente se desinstaló y reinstaló el paquete, configurándolo correctamente para que funcionara.
+
+Problema 2: Error "Internal Server Error" al registrar
+Descripción: Error interno del servidor al intentar registrar usuarios en Laravel
+
+Solución: Investigación reveló que era por uso de palabras clave obsoletas. Se modificaron todos los archivos que incluían la función middleware(), cambiando App\Http\Controllers\Controller a use Illuminate\Routing\Controller;
+
+Problema 3: Conflictos con controladores después del cambio
+Descripción: Después de cambiar a Illuminate\Routing\Controller, surgieron conflictos con otros controladores
+
+Solución: Se eliminó el proyecto y se volvió a levantar desde cero, aplicando las correcciones necesarias desde el inicio.
+
+Referencias
+Documentación Oficial de Laravel - https://laravel.com/docs
+
+Laravel Authentication - https://laravel.com/docs/authentication
+
+Stack Overflow - Soluciones a problemas comunes de Laravel
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
