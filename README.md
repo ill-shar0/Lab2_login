@@ -290,7 +290,7 @@ lab2-login-laravel/
 ### Datos del Estudiante
 - **Nombre:** Gabriela Takata
 - **Cédula:** 8-991-822
-- **Correo Institucional:** [correo@utp.ac.pa]
+- **Correo Institucional:** [gabriela.takata@utp.ac.pa]
 - **Formación Universitaria:** Licenciatura de Ingeniería de Software
 - **Asignatura:** Ingeniería Web
 - **Grupo/Salón:** 15F131
