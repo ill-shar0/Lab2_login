@@ -1,3 +1,31 @@
+# Laboratorio #2 - Implementación del Login en Laravel
+
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+
+## Descripción
+Implementación de un sistema de autenticación en Laravel utilizando la arquitectura MVC como parte del Laboratorio #2 de Ingeniería Web.
+
+## Requisitos Previos
+
+### Software Necesario
+- PHP versión 8.0 o superior
+- Composer última versión estable
+- Laravel Installer
+- Servidor web local (XAMPP utilizado en este proyecto)
+- Base de datos MySQL/MariaDB
+- Editor de código (Visual Studio Code recomendado)
+
+### Sistema Operativo
+- Windows, Linux o macOS
+
+## Instalación y Configuración
+
+### 1. Clonar el repositorio
+```bash
+git clone https://github.com/tu-usuario/lab2-login-laravel.git
+cd lab2-login-laravel
+
+###LARAVEL
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
